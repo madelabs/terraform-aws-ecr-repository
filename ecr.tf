@@ -17,19 +17,34 @@ resource "aws_ecr_repository" "ecr_repo" {
 }
 
 locals {
-  image_lifecycle_rule = [{
-    rulePriority = 1
-    description  = "Keep last ${var.ecr_max_images} images"
-    selection = {
-      tagStatus     = "tagged"
-      tagPrefixList = var.ecr_lifecycle_prefix_list
-      countType     = "imageCountMoreThan"
-      countNumber   = var.ecr_max_images
+  image_lifecycle_rule = [
+    {
+      rulePriority = 1
+      description  = "Keep last ${var.ecr_tagged_max_images} tagged images"
+      selection = {
+        tagStatus     = "tagged"
+        tagPrefixList = var.ecr_lifecycle_prefix_list
+        countType     = "imageCountMoreThan"
+        countNumber   = var.ecr_tagged_max_images
+      }
+      action = {
+        type = "expire"
+      }
+    },
+    {
+      rulePriority = 2
+      description  = "Expire untagged images older than ${var.ecr_untagged_images_expiration_days} days"
+      selection = {
+        tagStatus   = "untagged"
+        countType   = "sinceImagePushed"
+        countUnit   = "days"
+        countNumber = var.ecr_untagged_images_expiration_days
+      }
+      action = {
+        type = "expire"
+      }
     }
-    action = {
-      type = "expire"
-    }
-  }]
+  ]
 }
 
 resource "aws_ecr_lifecycle_policy" "lifecycle_policy" {
