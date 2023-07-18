@@ -40,12 +40,12 @@ variable "ecr_encryption_configuration" {
 
 variable "ecr_lifecycle_prefix_list" {
   type        = list(string)
-  description = "The lifecycle rule expires images with this list of prefixes based on the ecr_max_images variable. Defaults to [v]."
-  default     = ["v"]
+  description = "The lifecycle rule expires images with this list of prefixes based on the ecr_max_images variable. Defaults to blank."
+  default     = [""]
 }
 
 variable "ecr_max_images" {
   type        = number
   description = "The maximum number of images to keep in the ECR repository."
-  default     = 10
+  default     = 50
 }
