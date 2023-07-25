@@ -1,5 +1,5 @@
 module "ecr_repository" {
-  source                              = "madelabs/ecs-cluster/aws"
+  source                              = "madelabs/ecr-repository/aws"
   version                             = "x.x.x"
   ecr_repo_name                       = "example-ecr-repo"
   ecr_scan_policy                     = true
