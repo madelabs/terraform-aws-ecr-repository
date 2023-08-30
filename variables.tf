@@ -55,3 +55,32 @@ variable "ecr_tagged_max_images" {
   description = "The maximum number of images to keep in the ECR repository."
   default     = 50
 }
+
+variable "ecr_enable_enhanced_scanning" {
+  type        = bool
+  description = "Enable enhanced scanning for the ECR repository."
+  default     = false
+}
+
+variable "ecr_enable_enhanced_scanning_alerts" {
+  type        = bool
+  description = "Enable enhanced scanning alerts for the ECR repository."
+  default     = false
+}
+
+variable "ecr_scanning_events_sns_topic_subscription_protocol" {
+  type        = string
+  description = "The protocol to use for the SNS topic subscription."
+  default     = "https"
+
+  validation {
+    condition     = can(regex("^(email|email-json|http|https|sqs|sms|lambda)$", var.ecr_scanning_events_sns_topic_subscription_protocol))
+    error_message = "Must be either email, email-json, http, https, sqs, sms or lambda"
+  }
+}
+
+variable "ecr_scanning_events_sns_topic_subscription_endpoint" {
+  type        = string
+  description = "The endpoint to use for the SNS topic subscription."
+  default     = ""
+}
