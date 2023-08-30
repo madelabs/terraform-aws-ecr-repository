@@ -5,10 +5,17 @@ All notable changes to this project will be documented in this file.
 ## Unreleased
 
 - Encryption configuration support
-- Registry scanning configuration support
 - Pull through cache support
 - Enhanced lifecycle policy configuration
 - Registry replication support
+
+## [0.0.2] - 2023-08-30
+
+###
+
+- Add support for enhanced scanning and continuous scanning.
+- Add support for alerts on scan findings. 
+
 
 ## [0.0.1] - 2023-07-18
 
