@@ -54,3 +54,17 @@ resource "aws_ecr_lifecycle_policy" "lifecycle_policy" {
     rules = local.image_lifecycle_rule
   })
 }
+
+
+resource "aws_ecr_registry_scanning_configuration" "registry_scanning_configuration" {
+  count = var.ecr_enable_enhanced_scanning == true ? 1 : 0
+
+  scan_type = "ENHANCED"
+  rule {
+    scan_frequency = "CONTINUOUS_SCAN"
+    repository_filter {
+      filter      = var.ecr_repo_name
+      filter_type = "WILDCARD"
+    }
+  }
+}
