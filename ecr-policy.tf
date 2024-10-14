@@ -18,7 +18,7 @@ resource "aws_ecr_repository_policy" "ecr_policy" {
         ]
         Condition = {
           StringLike = {
-            "aws:SourceArn" = "arn:aws:lambda:${ecr_cross_account_region}:${var.ecr_cross_account_number}:function:*"
+            "aws:SourceArn" = "arn:aws:lambda:${var.ecr_cross_account_region}:${var.ecr_cross_account_number}:function:*"
           }
         }
       },
