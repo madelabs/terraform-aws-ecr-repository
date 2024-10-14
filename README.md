@@ -18,10 +18,10 @@ Example usage with Cross Account access
 ```terraform
 
 module "ecr_repository" {
-  source                              = TO BE UPDATED
-  ecr_repo_name                       = "ecr-test-policy-std"
-  ecr_force_delete                    = true
-  ecr_tagged_max_images               = 7
+  source                   = TO BE UPDATED
+  ecr_repo_name            = "ecr-test-policy-std"
+  ecr_force_delete         = true
+  ecr_tagged_max_images    = 7
   ecr_cross_account_number = "222222222222"
   ecr_cross_account_access = true
 }

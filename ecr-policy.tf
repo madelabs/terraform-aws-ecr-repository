@@ -1,7 +1,7 @@
 
 resource "aws_ecr_repository_policy" "ecr_policy" {
-  count       = var.ecr_cross_account_access ? 1 : 0
-  repository =  var.ecr_repo_name
+  count      = var.ecr_cross_account_access ? 1 : 0
+  repository = var.ecr_repo_name
 
   depends_on = [
     aws_ecr_repository.ecr_repo
