@@ -55,3 +55,21 @@ variable "ecr_tagged_max_images" {
   description = "The maximum number of images to keep in the ECR repository."
   default     = 50
 }
+
+variable "ecr_cross_account_access" {
+  type        = bool
+  description = "Allows for letting another AWS account access your ECR policy using ECR Policy rules"
+  default     = false
+}
+
+variable "ecr_cross_account_number" {
+  type        = string
+  description = "AWS account that will be granted access to ECR"
+  default     = ""
+}
+
+variable "ecr_cross_account_region" {
+  type        = string
+  description = "AWS account that will be granted access to ECR's region"
+  default     = "us-east-1"
+}
