@@ -10,6 +10,16 @@ All notable changes to this project will be documented in this file.
 - Enhanced lifecycle policy configuration
 - Registry replication support
 
+## [0.0.2] - 2024-10-14
+
+### Added
+
+- Added cross account ECR policy access.
+- Added `ecr_cross_account_access` `ecr_cross_account_number` `ecr_cross_account_region`
+
+---
+
+
 ## [0.0.1] - 2023-07-18
 
 ### Added

@@ -13,6 +13,21 @@ A Terraform module for managing an AWS ECR Repository.
 ## Requirements
 
 - An existing AWS Account
+
+Example usage with Cross Account access
+```terraform
+
+module "ecr_repository" {
+  source                              = TO BE UPDATED
+  ecr_repo_name                       = "ecr-test-policy-std"
+  ecr_force_delete                    = true
+  ecr_tagged_max_images               = 7
+  ecr_cross_account_number = "222222222222"
+  ecr_cross_account_access = true
+}
+```
+Above, this ECR repository made in AWS account 11111111111 will allow AWS account 222222222222 to retrieve the image from ECR.
+
 <!-- BEGIN_TF_DOCS -->
 ## Providers
 
