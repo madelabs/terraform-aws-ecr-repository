@@ -65,7 +65,7 @@ variable "ecr_cross_account_access" {
 variable "ecr_cross_account_number" {
   type        = string
   description = "AWS account that will be granted access to ECR"
-  default     = ""
+  default     = "222222222222"
 }
 
 variable "ecr_cross_account_region" {
