@@ -13,6 +13,21 @@ A Terraform module for managing an AWS ECR Repository.
 ## Requirements
 
 - An existing AWS Account
+
+Example usage with Cross Account access
+```terraform
+
+module "ecr_repository" {
+  source                   = TO BE UPDATED
+  ecr_repo_name            = "ecr-test-policy-std"
+  ecr_force_delete         = true
+  ecr_tagged_max_images    = 7
+  ecr_cross_account_number = "222222222222"
+  ecr_cross_account_access = true
+}
+```
+Above, this ECR repository made in AWS account 11111111111 will allow AWS account 222222222222 to retrieve the image from ECR.
+
 <!-- BEGIN_TF_DOCS -->
 ## Providers
 
@@ -30,11 +45,15 @@ No modules.
 |------|------|
 | [aws_ecr_lifecycle_policy.lifecycle_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_lifecycle_policy) | resource |
 | [aws_ecr_repository.ecr_repo](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository) | resource |
+| [aws_ecr_repository_policy.ecr_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository_policy) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_ecr_cross_account_access"></a> [ecr\_cross\_account\_access](#input\_ecr\_cross\_account\_access) | Allows for letting another AWS account access your ECR policy using ECR Policy rules | `bool` | `false` | no |
+| <a name="input_ecr_cross_account_number"></a> [ecr\_cross\_account\_number](#input\_ecr\_cross\_account\_number) | AWS account that will be granted access to ECR | `string` | `""` | no |
+| <a name="input_ecr_cross_account_region"></a> [ecr\_cross\_account\_region](#input\_ecr\_cross\_account\_region) | AWS account that will be granted access to ECR's region | `string` | `"us-east-1"` | no |
 | <a name="input_ecr_encryption_configuration"></a> [ecr\_encryption\_configuration](#input\_ecr\_encryption\_configuration) | The encryption type to use for the repository. Valid values are AES256 or KMS. Defaults to AES256. If using KMS, provide the KMS key ARN. | <pre>object({<br>    encryption_type = string<br>    kms_key         = string<br>  })</pre> | <pre>{<br>  "encryption_type": "AES256",<br>  "kms_key": null<br>}</pre> | no |
 | <a name="input_ecr_force_delete"></a> [ecr\_force\_delete](#input\_ecr\_force\_delete) | If true, will delete the repository even if it contains images. Defaults to false. | `bool` | `false` | no |
 | <a name="input_ecr_lifecycle_prefix_list"></a> [ecr\_lifecycle\_prefix\_list](#input\_ecr\_lifecycle\_prefix\_list) | The lifecycle rule expires images with this list of prefixes based on the ecr\_max\_images variable. Defaults to semver. | `list(string)` | <pre>[<br>  "0",<br>  "1",<br>  "2"<br>]</pre> | no |
